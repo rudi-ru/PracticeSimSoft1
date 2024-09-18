@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="autoTests" verbose="1">
-    <test name="Tests">
+<suite name="autoTestsParallel" verbose="1" parallel="classes" thread-count="2">
+    <test name="ParallelTests">
         <classes>
             <class name="tests.Test1" />
             <class name="tests.Test2" />
