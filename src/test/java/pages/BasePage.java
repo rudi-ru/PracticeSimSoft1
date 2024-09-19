@@ -2,34 +2,31 @@ package pages;
 
 import helpers.PropertyProvider;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+import org.openqa.selenium.support.PageFactory;
+import pages.elements.BurgerHomeElement;
 
-import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-    protected WebDriver driver;
+    protected final WebDriver driver;
 
-    public BasePage(WebDriver driver) { //коструктор класса для определения драйвера
-        this.driver = driver;
-    }
+    BurgerHomeElement burgerHomeElement;
 
-    public WebDriver createDriver() {
-
-        switch (PropertyProvider.getInstance().getProperty("browser.name")) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-            default:
-                Assert.fail("Incorrect platform or browser name: " +
-                           PropertyProvider.getInstance().getProperty("browser.name"));
+    public BasePage(final WebDriver webDriver) { //коструктор класса для определения драйвера
+        try {
+            PageFactory.initElements(webDriver, this);
+            this.driver = webDriver;
+            burgerHomeElement = new BurgerHomeElement(driver);
+        } catch (IllegalStateException e) {
+            throw new RuntimeException(e);
         }
-
-        driver.manage().window().maximize();
-        driver.manage().
-               timeouts().
-               implicitlyWait(Long.parseLong(PropertyProvider.getInstance().getProperty("page.load.timeout")), TimeUnit.SECONDS);
-        return driver;
     }
+
+    //public void logout() {burgerHomeElement.logout();}
+
+
+    public void open() {
+        driver.get(PropertyProvider.getInstance().getProperty("web.url"));
+    }
+
+
 }

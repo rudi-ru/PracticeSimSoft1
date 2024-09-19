@@ -3,7 +3,7 @@
 <suite name="autoTests" verbose="1">
     <test name="Tests">
         <classes>
-            <class name="tests.Test1" />
+            <class name="tests.AddCustomerTest" />
             <class name="tests.Test2" />
         </classes>
     </test>

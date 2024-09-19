@@ -3,7 +3,7 @@
 <suite name="autoTestsParallel" verbose="1" parallel="classes" thread-count="2">
     <test name="ParallelTests">
         <classes>
-            <class name="tests.Test1" />
+            <class name="tests.AddCustomerTest" />
             <class name="tests.Test2" />
         </classes>
     </test>
