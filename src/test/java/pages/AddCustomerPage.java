@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static helpers.FirstNameGenerator.getFirstName;
 import static helpers.PostCodeGenerator.getPostCode;
+import static helpers.Wait.waitUntilClickable;
 import static helpers.Wait.waitUntilVisible;
 
 public class AddCustomerPage extends BasePage {
@@ -15,31 +16,38 @@ public class AddCustomerPage extends BasePage {
     final String postCode = getPostCode();
     final String firstName = getFirstName(postCode);
 
-    @FindBy(xpath = "//div[@class='center']/button[@class='btn btn-lg tab'][1]")
-    WebElement addCustomer;
+    @FindBy(xpath = "//*[contains(text(), 'Add Customer')]")
+    WebElement addCustomer ;
 
-    @FindBy(xpath = "//div[@class='form-group'][1]/input[@class='form-control ng-pristine ng-invalid ng-invalid-required ng-touched']")
+
+    @FindBy(xpath = "//div[@class='form-group']//input[@placeholder='First Name']")
     WebElement firstNameField;
 
-    @FindBy(xpath = "//div[@class='form-group'][2]/input[@class='form-control ng-pristine ng-untouched ng-invalid ng-invalid-required']")
+    @FindBy(xpath = "//div[@class='form-group']//input[@placeholder='Last Name']")
     WebElement lastNameField;
 
-    @FindBy(xpath = "//div[@class='form-group'][3]/input[@class='form-control ng-pristine ng-invalid ng-invalid-required ng-touched']")
+    @FindBy(xpath = "//div[@class='form-group']//input[@placeholder='Post Code']")
     WebElement postCodeField;
+
+    @FindBy(xpath = "//button[@type='submit' and text()='Add Customer']")
+    WebElement addCustomerButton;
+
 
     public AddCustomerPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+
     public boolean izFormOpen() {
-        addCustomer.click();
         waitUntilOpen();
+        addCustomer.click();
+
         return postCodeField.isDisplayed();
     }
 
     @Step("Wait until form Add Customer is open")
     public AddCustomerPage waitUntilOpen() {
-        waitUntilVisible(driver, postCodeField);
+        waitUntilClickable(driver, addCustomer);
         return this;
     }
 
@@ -52,7 +60,7 @@ public class AddCustomerPage extends BasePage {
     }
 
     @Step("Add First Name")
-    public AddCustomerPage addFirstName(String postCode) {
+    public AddCustomerPage addFirstName() {
         firstNameField.sendKeys(firstName);
         return this;
     }
@@ -60,6 +68,12 @@ public class AddCustomerPage extends BasePage {
     @Step("Add Last Name")
     public AddCustomerPage addLastName() {
         lastNameField.sendKeys("zxcvv");
+        return this;
+    }
+
+    @Step("Click button \"Add Cuctomer\"")
+    public AddCustomerPage clickAddCustomerButton() {
+        addCustomerButton.click();
         return this;
     }
 

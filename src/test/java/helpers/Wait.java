@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 
 public class Wait {
 
@@ -22,7 +24,7 @@ public class Wait {
 
     public Wait(WebDriver driver) {
         int timeout = Integer.parseInt(PropertyProvider.getInstance().getProperty("explicit.timeout"));
-        wait = new WebDriverWait(driver, timeout);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
     public static void waitUntilVisible(WebDriver driver, final By elementSelector) {

@@ -5,15 +5,16 @@ import helpers.PropertyProvider;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
+import pages.AddCustomerPage;
 import pages.BasePage;
-//import pages.test_page.HomePage;
-
+import pages.elements.BurgerHomeElement;
 
 
 public class BaseTest {
 
     protected WebDriver driver = CommonActions.createDriver();
     protected BasePage basePage = new BasePage(driver);
+    protected BurgerHomeElement burgerHomeElement = new BurgerHomeElement(driver);
 
 
     @AfterTest
@@ -29,7 +30,7 @@ public class BaseTest {
 
     @AfterTest(alwaysRun = true)
     public void closeBrowser() {
-        if (PropertyProvider.getInstance().getProperty("hold.browser.open") == "true") {
+        if (PropertyProvider.getInstance().getProperty("hold.browser.open").equals("true")) {
             driver.quit();
         }
     }

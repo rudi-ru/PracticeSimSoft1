@@ -11,8 +11,6 @@ public class BurgerHomeElement {
     @FindBy(xpath = "//button[text() = 'Home']")
     WebElement burgerHomeButton;
 
-//    @FindBy(xpath = "//button[text() = 'Home']")
-//    WebElement logoutHome;
 
     public BurgerHomeElement(WebDriver webDriver) {
         try {
@@ -21,5 +19,9 @@ public class BurgerHomeElement {
         } catch (IllegalStateException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void clickHomeButton() {
+        burgerHomeButton.click();
     }
 }
