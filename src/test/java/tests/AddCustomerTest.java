@@ -43,7 +43,12 @@ public class AddCustomerTest extends BaseTest {
     public void openAccount() throws InterruptedException {
         openAccountPage
                 .waitUntilOpen()
-                .chooseUser();
+                .chooseUser()
+                .chooseCurrency()
+                .clickProcessButton();
+
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
 
     }
 

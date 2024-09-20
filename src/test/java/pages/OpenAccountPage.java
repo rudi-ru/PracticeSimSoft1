@@ -1,16 +1,16 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.Wait.waitUntilClickable;
+import java.util.List;
 
-public class OpenAccountPage extends BasePage{
-    final String xpathUserAccount = "//select[@id='userSelect']/option[text()='" + AddCustomerPage.account + "']"; // "option.ng-binding.ng-scope:contains('')";
+import static helpers.Wait.*;
 
+public class OpenAccountPage extends BasePage {
+
+    final String xpathUserAccount = "//select[@id='userSelect']/option[text()='" + AddCustomerPage.account + "']";
 
     @FindBy(css = "button.btn:nth-child(2)")
     WebElement openAccount;
@@ -18,45 +18,45 @@ public class OpenAccountPage extends BasePage{
     @FindBy(xpath = "//select[@id='userSelect']")
     WebElement userSelect;
 
+    @FindBy(xpath = "//select[@id='currency']")
+    WebElement currencySelect;
+
+    @FindBy(xpath = "//button[@type='submit' and text()='Process']")
+    WebElement addProcessButton;
+
 
     public OpenAccountPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-
-
     @Step("Wait until form Open Account is open")
     public OpenAccountPage waitUntilOpen() {
         openAccount.click();
-        waitUntilClickable(driver, userSelect);
         return this;
     }
 
     @Step("Choose added user")
     public OpenAccountPage chooseUser() {
-        if (userSelect.isDisplayed()) {
-            userSelect.click();
-            driver.findElement(By.xpath(xpathUserAccount)).click();
-        }
+        waitUntilVisible(driver, userSelect);
+        userSelect.click();
+        waitThenClick(driver, driver.findElement(By.xpath(xpathUserAccount)));
+        driver.findElement(By.xpath(xpathUserAccount)).click();
         return this;
     }
 
-//    @Step("Add First Name")
-//    public OpenAccountPage addFirstName() {
-//        firstNameField.sendKeys(firstName);
-//        return this;
-//    }
-//
-//    @Step("Add Last Name")
-//    public OpenAccountPage addLastName() {
-//        lastNameField.sendKeys("zxcvv");
-//        return this;
-//    }
-//
-//    @Step("Click button \"Add Cuctomer\"")
-//    public AddCustomerPage clickAddCustomerButton() {
-//        addCustomerButton.click();
-//        return this;
-//    }
+    @Step("Choose currency")
+    public OpenAccountPage chooseCurrency() {
+        currencySelect.click();
+        currencySelect.sendKeys(Keys.DOWN);
+        currencySelect.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+
+    @Step("Click button Pocess")
+    public OpenAccountPage clickProcessButton() {
+        addProcessButton.click();
+        return this;
+    }
 
 }

@@ -20,7 +20,7 @@ public class AddCustomerPage extends BasePage {
 
 
     @FindBy(xpath = "//*[contains(text(), 'Add Customer')]")
-    WebElement addCustomer ;
+    WebElement addCustomer;
 
 
     @FindBy(xpath = "//div[@class='form-group']//input[@placeholder='First Name']")
@@ -41,12 +41,10 @@ public class AddCustomerPage extends BasePage {
     }
 
 
-
-
     @Step("Wait until form Add Customer is open")
     public AddCustomerPage waitUntilOpen() {
-        addCustomer.click();
         waitUntilClickable(driver, addCustomer);
+        addCustomer.click();
         return this;
     }
 
