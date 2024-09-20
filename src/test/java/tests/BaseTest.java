@@ -20,7 +20,7 @@ public class BaseTest {
     @AfterTest
     public void clearCookiesAndLocalStorage() {
 
-        if (PropertyProvider.getInstance().getProperty("clear.cookies.and.storage") == "true") {
+        if (PropertyProvider.getInstance().getProperty("clear.cookies.and.storage").equals("true")) {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
             driver.manage().deleteAllCookies();
             javascriptExecutor.executeScript("window.sessionStorage.clear()");

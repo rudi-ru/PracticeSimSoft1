@@ -1,7 +1,7 @@
 package pages;
 
+import helpers.PropertyProvider;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,12 +9,15 @@ import org.openqa.selenium.support.FindBy;
 import static helpers.FirstNameGenerator.getFirstName;
 import static helpers.PostCodeGenerator.getPostCode;
 import static helpers.Wait.waitUntilClickable;
-import static helpers.Wait.waitUntilVisible;
+
 
 public class AddCustomerPage extends BasePage {
 
-    final String postCode = getPostCode();
-    final String firstName = getFirstName(postCode);
+    static final String postCode = getPostCode();
+    static final String firstName = getFirstName(postCode);
+    static final String lastName = PropertyProvider.getInstance().getProperty("last.name");
+    static final String account = firstName + " " + PropertyProvider.getInstance().getProperty("last.name");
+
 
     @FindBy(xpath = "//*[contains(text(), 'Add Customer')]")
     WebElement addCustomer ;
@@ -38,22 +41,18 @@ public class AddCustomerPage extends BasePage {
     }
 
 
-    public boolean izFormOpen() {
-        waitUntilOpen();
-        addCustomer.click();
 
-        return postCodeField.isDisplayed();
-    }
 
     @Step("Wait until form Add Customer is open")
     public AddCustomerPage waitUntilOpen() {
+        addCustomer.click();
         waitUntilClickable(driver, addCustomer);
         return this;
     }
 
     @Step("Add Post Code")
     public AddCustomerPage addPostCode() {
-        if (izFormOpen() == true) {
+        if (postCodeField.isDisplayed()) {
             postCodeField.sendKeys(postCode);
         }
         return this;
@@ -67,7 +66,7 @@ public class AddCustomerPage extends BasePage {
 
     @Step("Add Last Name")
     public AddCustomerPage addLastName() {
-        lastNameField.sendKeys("zxcvv");
+        lastNameField.sendKeys(lastName);
         return this;
     }
 

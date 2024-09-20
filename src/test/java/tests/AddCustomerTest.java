@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.AddCustomerPage;
 import pages.BasePage;
+import pages.OpenAccountPage;
 import pages.elements.BurgerHomeElement;
 
 import static org.openqa.selenium.Keys.ENTER;
 
 public class AddCustomerTest extends BaseTest {
     AddCustomerPage addCustomerPage = new AddCustomerPage(driver);
+    OpenAccountPage openAccountPage = new OpenAccountPage(driver);
 
 
     @BeforeTest
@@ -37,7 +39,19 @@ public class AddCustomerTest extends BaseTest {
 
     }
 
-//    @AfterTest
+    @Test
+    public void openAccount() throws InterruptedException {
+        openAccountPage
+                .waitUntilOpen()
+                .chooseUser();
+
+    }
+
+
+
+
+
+    //    @AfterTest
 //    public void clickHomeButton() {
 //        burgerHomeElement.clickHomeButton();
 //    }
