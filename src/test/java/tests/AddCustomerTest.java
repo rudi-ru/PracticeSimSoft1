@@ -13,8 +13,9 @@ public class AddCustomerTest extends BaseTest{
     }
 
     @Test
-    public void ultrahernya() throws InterruptedException {
-        addCustomerPage.waitUntilOpen()
+    public void proba() throws InterruptedException {
+        addCustomerPage
+                .waitUntilOpen()
                 .addPostCode();
                 //.addFirstName();
 
