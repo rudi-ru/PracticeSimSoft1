@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
 import static helpers.Wait.*;
 
@@ -12,7 +11,8 @@ public class OpenAccountPage extends BasePage {
 
     final String xpathUserAccount = "//select[@id='userSelect']/option[text()='" + AddCustomerPage.account + "']";
 
-    @FindBy(css = "button.btn:nth-child(2)")
+
+    @FindBy(xpath = "//button[@ng-click='openAccount()']")
     WebElement openAccount;
 
     @FindBy(xpath = "//select[@id='userSelect']")

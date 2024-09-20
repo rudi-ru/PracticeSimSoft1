@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 import static helpers.FirstNameGenerator.getFirstName;
 import static helpers.PostCodeGenerator.getPostCode;
 import static helpers.Wait.waitUntilClickable;
@@ -67,6 +68,7 @@ public class AddCustomerPage extends BasePage {
         lastNameField.sendKeys(lastName);
         return this;
     }
+
 
     @Step("Click button \"Add Cuctomer\"")
     public AddCustomerPage clickAddCustomerButton() {

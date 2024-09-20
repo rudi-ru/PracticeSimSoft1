@@ -16,7 +16,7 @@ public class Wait {
     private final WebDriverWait wait;
 
     private static Wait getInstance(WebDriver driver) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Wait(driver);
         }
         return instance;
@@ -30,12 +30,11 @@ public class Wait {
     public static void waitUntilVisible(WebDriver driver, final By elementSelector) {
         getInstance(driver).wait.until(ExpectedConditions.visibilityOfElementLocated(elementSelector));
     }
+
     public static void waitUntilVisible(WebDriver driver, final WebElement webElement) {
         getInstance(driver).wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-   // public+
-    // static void waitUntilVisibleAllElements(WebDriver)
 
     public static void waitUntilClickable(WebDriver driver, final WebElement webElement) {
         getInstance(driver).wait.until(ExpectedConditions.elementToBeClickable(webElement));
