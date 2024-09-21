@@ -14,10 +14,10 @@ import static helpers.Wait.waitUntilClickable;
 
 public class AddCustomerPage extends BasePage {
 
-    static final String postCode = getPostCode();
-    static final String firstName = getFirstName(postCode);
-    static final String lastName = PropertyProvider.getInstance().getProperty("last.name");
-    static final String account = firstName + " " + PropertyProvider.getInstance().getProperty("last.name");
+    public static final String postCode = getPostCode();
+    public static final String firstName = getFirstName(postCode);
+    public static final String lastName = PropertyProvider.getInstance().getProperty("last.name");
+    public static final String account = firstName + " " + PropertyProvider.getInstance().getProperty("last.name");
 
 
     @FindBy(xpath = "//*[contains(text(), 'Add Customer')]")

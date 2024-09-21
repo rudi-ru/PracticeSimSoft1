@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,18 +11,7 @@ public class CustomerPage extends BasePage{
         super(webDriver);
     }
 
-    String xpathFirstName = "//tr[@ng-repeat='cust in Customers | orderBy:sortType:sortReverse " +
-                       "| filter:searchCustomer']/td[text()='" + AddCustomerPage.account +  "']";
-
-    String xpathLastName = "//tr[@ng-repeat='cust in Customers | orderBy:sortType:sortReverse " +
-                      "| filter:searchCustomer']/td[text()='" + AddCustomerPage.lastName + "']";
-
-    String xpathPostCode = "//tr[@ng-repeat='cust in Customers | orderBy:sortType:sortReverse " +
-                           "| filter:searchCustomer']/td[text()='" + AddCustomerPage.postCode +"']";
-
-    // переделать
-    String xpathDeleteButoon = "//tr[@ng-repeat='cust in Customers | orderBy:sortType:sortReverse " +
-                               "| filter:searchCustomer']//button[text()='Delete']";
+    public static String cssDeleteButton = "tr.ng-scope:nth-child(5) > td:nth-child(5) > button:nth-child(1)";
 
     @FindBy(xpath = "//button[@ng-click='showCust()']")
     WebElement openCustomerButton;
@@ -29,13 +19,22 @@ public class CustomerPage extends BasePage{
     @FindBy(xpath = "//a[@ng-click=\"sortType = 'fName'; sortReverse = !sortReverse\" and text()='First Name']")
     WebElement firstColumnName;
 
+    @FindBy(xpath = "//input[@placeholder='Search Customer']")
+    WebElement searchCustomer;
+
     public CustomerPage clickCustomerPage() {
         openCustomerButton.click();
         return this;
     }
 
-    public CustomerPage deleteUser() {
+    public CustomerPage clickSearchCustomer(String name) {
+        searchCustomer.click();
+        searchCustomer.sendKeys(name);
+        return this;
+    }
 
+    public CustomerPage deleteUser() {
+        driver.findElement(By.cssSelector(cssDeleteButton));
         return this;
     }
 
