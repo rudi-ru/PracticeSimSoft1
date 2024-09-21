@@ -1,11 +1,13 @@
 package pages;
 
+import helpers.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.util.List;
 
-public class CustomerPage extends BasePage{
+public class CustomerPage extends BasePage {
 
     public CustomerPage(WebDriver webDriver) {
         super(webDriver);
@@ -16,11 +18,15 @@ public class CustomerPage extends BasePage{
     @FindBy(xpath = "//button[@ng-click='showCust()']")
     WebElement openCustomerButton;
 
-    @FindBy(xpath = "//a[@ng-click=\"sortType = 'fName'; sortReverse = !sortReverse\" and text()='First Name']")
+    @FindBy(xpath = "//a[@ng-click=\"sortType = 'fName'; sortReverse = !sortReverse\"]")
     WebElement firstColumnName;
 
     @FindBy(xpath = "//input[@placeholder='Search Customer']")
     WebElement searchCustomer;
+
+
+
+    //public static boolean byAlphabet;
 
     public CustomerPage clickCustomerPage() {
         openCustomerButton.click();
@@ -38,12 +44,25 @@ public class CustomerPage extends BasePage{
         return this;
     }
 
-    public CustomerPage sortByFirstName() {
+    public CustomerPage sortByClickFirstName() {
         firstColumnName.click();
+        Wait.waitUntilVisible(driver, By.xpath("//tbody"));
+        if (sortedByAlphabet(driver) == false) {
+            firstColumnName.click();
+        }
         return this;
     }
 
-
+    public static boolean sortedByAlphabet(WebDriver driver) {
+        List<WebElement> list = driver.findElements(By.xpath("//tbody"));
+        boolean byAlphabet = false;
+        if (!list.isEmpty()) {
+            if (list.getFirst().getText().toLowerCase().startsWith("a")) {
+                byAlphabet = true;
+            } else byAlphabet = false;
+        }
+        return byAlphabet;
+    }
 
 
 }
