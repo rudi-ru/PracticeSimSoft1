@@ -5,15 +5,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import java.util.List;
 
 public class CustomerPage extends BasePage {
 
+    // Класс для работы с формой Customers
     public CustomerPage(WebDriver webDriver) {
         super(webDriver);
     }
-
-    public static String cssDeleteButton = "tr.ng-scope:nth-child(5) > td:nth-child(5) > button:nth-child(1)";
 
     @FindBy(xpath = "//button[@ng-click='showCust()']")
     WebElement openCustomerButton;
@@ -22,25 +22,27 @@ public class CustomerPage extends BasePage {
     WebElement firstColumnName;
 
     @FindBy(xpath = "//input[@placeholder='Search Customer']")
-    WebElement searchCustomer;
+    public WebElement searchCustomer;
 
-
-
-    //public static boolean byAlphabet;
+    @FindBy(xpath = "//tbody//button[text()='Delete']")
+    WebElement deleteButton;
 
     public CustomerPage clickCustomerPage() {
         openCustomerButton.click();
         return this;
     }
 
-    public CustomerPage clickSearchCustomer(String name) {
+    public CustomerPage setTextToSearchCustomer(String text) {
         searchCustomer.click();
-        searchCustomer.sendKeys(name);
+        searchCustomer.sendKeys(text);
         return this;
     }
 
-    public CustomerPage deleteUser() {
-        driver.findElement(By.cssSelector(cssDeleteButton));
+    public CustomerPage deleteUser(String name) {
+        setTextToSearchCustomer(name);
+        Wait.waitUntilClickable(driver, deleteButton);
+        deleteButton.click();
+        searchCustomer.clear();
         return this;
     }
 
@@ -63,6 +65,4 @@ public class CustomerPage extends BasePage {
         }
         return byAlphabet;
     }
-
-
 }

@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.CustomerPage;
 
-import java.util.Locale;
 
 public class SortByFirstNameTest extends BaseTest {
     CustomerPage customerPage = new CustomerPage(driver);

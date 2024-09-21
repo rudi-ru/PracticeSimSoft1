@@ -11,7 +11,7 @@ public class BurgerHomeElement {
     @FindBy(xpath = "//button[text() = 'Home']")
     WebElement burgerHomeButton;
 
-
+    // Обработка кнопки Home
     public BurgerHomeElement(WebDriver webDriver) {
         try {
             PageFactory.initElements(webDriver, this);

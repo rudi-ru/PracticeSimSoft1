@@ -5,13 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.elements.BurgerHomeElement;
 
-
+// что-то магическое, возможно философский камень)
 public class BasePage {
     protected final WebDriver driver;
 
     BurgerHomeElement burgerHomeElement;
 
-    public BasePage(final WebDriver webDriver) { //коструктор класса для определения драйвера
+    public BasePage(final WebDriver webDriver) {
         try {
             PageFactory.initElements(webDriver, this);
             this.driver = webDriver;
@@ -21,12 +21,7 @@ public class BasePage {
         }
     }
 
-    //public void logout() {burgerHomeElement.logout();}
-
-
     public void open() {
         driver.get(PropertyProvider.getInstance().getProperty("web.url"));
     }
-
-
 }

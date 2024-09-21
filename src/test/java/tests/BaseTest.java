@@ -15,7 +15,6 @@ public class BaseTest {
     protected BasePage basePage = new BasePage(driver);
     protected BurgerHomeElement burgerHomeElement = new BurgerHomeElement(driver);
 
-
     @AfterTest
     public void clearCookiesAndLocalStorage() {
 
@@ -25,7 +24,6 @@ public class BaseTest {
             javascriptExecutor.executeScript("window.sessionStorage.clear()");
         }
     }
-
 
     @AfterTest(alwaysRun = true)
     public void closeBrowser() {

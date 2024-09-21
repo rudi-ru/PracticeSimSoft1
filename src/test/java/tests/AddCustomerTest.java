@@ -13,7 +13,6 @@ import pages.OpenAccountPage;
 
 import static helpers.Wait.waitUntilVisible;
 
-
 public class AddCustomerTest extends BaseTest {
     AddCustomerPage addCustomerPage = new AddCustomerPage(driver);
     OpenAccountPage openAccountPage = new OpenAccountPage(driver);
@@ -29,7 +28,7 @@ public class AddCustomerTest extends BaseTest {
     @Step("Creating a new account")
     public void addCustomer() throws InterruptedException {
 
-        addCustomerPage //enterForm();
+        addCustomerPage
                 .waitUntilOpen()
                 .addPostCode()
                 .addFirstName()
@@ -53,7 +52,6 @@ public class AddCustomerTest extends BaseTest {
         alert.accept();
     }
 
-
     // Xpath-ы для элементов таблицы окна Customers
     String xpathFirstName = "//td[@class='ng-binding' and text()='" + AddCustomerPage.firstName + "']";
 
@@ -66,12 +64,13 @@ public class AddCustomerTest extends BaseTest {
     public void openAndCheckForm() {
 
         customerPage.clickCustomerPage();
-        customerPage.clickSearchCustomer(AddCustomerPage.firstName);
+        customerPage.setTextToSearchCustomer(AddCustomerPage.firstName);
         waitUntilVisible(driver, driver.findElement(By.xpath(xpathFirstName)));
 
 
         Assert.assertEquals(driver.findElement(By.xpath(xpathFirstName)).getText(), AddCustomerPage.firstName);
         Assert.assertEquals(driver.findElement(By.xpath(xpathLastName)).getText(), AddCustomerPage.lastName);
         Assert.assertEquals(driver.findElement(By.xpath(xpathPostCode)).getText(), AddCustomerPage.postCode);
+
     }
 }

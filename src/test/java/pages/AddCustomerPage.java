@@ -11,7 +11,7 @@ import static helpers.FirstNameGenerator.getFirstName;
 import static helpers.PostCodeGenerator.getPostCode;
 import static helpers.Wait.waitUntilClickable;
 
-
+// Класс обработки формы добавления клиента
 public class AddCustomerPage extends BasePage {
 
     public static final String postCode = getPostCode();
@@ -22,7 +22,6 @@ public class AddCustomerPage extends BasePage {
 
     @FindBy(xpath = "//*[contains(text(), 'Add Customer')]")
     WebElement addCustomer;
-
 
     @FindBy(xpath = "//div[@class='form-group']//input[@placeholder='First Name']")
     WebElement firstNameField;
@@ -69,11 +68,9 @@ public class AddCustomerPage extends BasePage {
         return this;
     }
 
-
     @Step("Click button \"Add Cuctomer\"")
     public AddCustomerPage clickAddCustomerButton() {
         addCustomerButton.click();
         return this;
     }
-
 }

@@ -7,10 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 import static helpers.Wait.*;
 
+// Создаем новый аккаунт
 public class OpenAccountPage extends BasePage {
 
     final String xpathUserAccount = "//select[@id='userSelect']/option[text()='" + AddCustomerPage.account + "']";
-
 
     @FindBy(xpath = "//button[@ng-click='openAccount()']")
     WebElement openAccount;

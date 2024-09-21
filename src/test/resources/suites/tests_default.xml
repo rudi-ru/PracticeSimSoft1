@@ -5,6 +5,7 @@
         <classes>
             <class name="tests.AddCustomerTest" />
             <class name="tests.SortByFirstNameTest" />
+            <class name="tests.DeleteCustomerTest" />
         </classes>
     </test>
 </suite>

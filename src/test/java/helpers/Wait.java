@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-
+// Различные ожидания
 public class Wait {
 
     private static Wait instance;
