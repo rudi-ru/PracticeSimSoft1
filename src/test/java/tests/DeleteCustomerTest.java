@@ -49,6 +49,5 @@ public class DeleteCustomerTest extends BaseTest {
         } catch (NoSuchElementException e) {
             new RuntimeException(e);
         }
-
     }
 }
