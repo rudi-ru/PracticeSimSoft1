@@ -1,6 +1,8 @@
 package tests;
 
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -61,6 +63,7 @@ public class AddCustomerTest extends BaseTest {
 
     @Test
     @Step("Сhecking that forms are filled out correctly")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void openAndCheckForm() {
 
         customerPage.clickCustomerPage();
@@ -71,9 +74,5 @@ public class AddCustomerTest extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath(xpathFirstName)).getText(), AddCustomerPage.firstName);
         Assert.assertEquals(driver.findElement(By.xpath(xpathLastName)).getText(), AddCustomerPage.lastName);
         Assert.assertEquals(driver.findElement(By.xpath(xpathPostCode)).getText(), AddCustomerPage.postCode);
-
-
     }
-
-
 }

@@ -1,5 +1,7 @@
 package pages;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +31,7 @@ public class OpenAccountPage extends BasePage {
         super(webDriver);
     }
 
-    @Step("Wait until form Open Account is open")
+    @Step("Open Account")
     public OpenAccountPage waitUntilOpen() {
         openAccount.click();
         return this;

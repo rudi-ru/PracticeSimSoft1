@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -18,6 +20,7 @@ public class SortByFirstNameTest extends BaseTest {
 
     @Test
     @Step("Checking and sort accounts")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void checkFirstName() throws InterruptedException {
 
         customerPage
