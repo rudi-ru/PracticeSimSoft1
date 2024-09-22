@@ -72,5 +72,8 @@ public class AddCustomerTest extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath(xpathLastName)).getText(), AddCustomerPage.lastName);
         Assert.assertEquals(driver.findElement(By.xpath(xpathPostCode)).getText(), AddCustomerPage.postCode);
 
+
     }
+
+
 }

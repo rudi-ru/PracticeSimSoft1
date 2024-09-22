@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.CustomerPage;
@@ -39,10 +40,13 @@ public class DeleteCustomerTest extends BaseTest {
     @Test
     @Step("Data deletion check")
     public void checkForm() {
-        try { List<WebElement> deletedElement = driver.findElements(By.xpath("//*[text()='Albus' and text()='Ron']"));
+        try {
+            List<WebElement> deletedElement = driver.findElements(By.xpath("//td[@class='ng-binding'" +
+                    "and text()='Harry'] | //td[@class='ng-binding' and text()='Albus']"));
             Assert.assertTrue(deletedElement.isEmpty(), "Not deleted");
         } catch (NoSuchElementException e) {
             new RuntimeException(e);
         }
+
     }
 }

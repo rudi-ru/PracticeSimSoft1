@@ -4,6 +4,7 @@ import helpers.CommonActions;
 import helpers.PropertyProvider;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import pages.BasePage;
 import pages.elements.BurgerHomeElement;
@@ -28,9 +29,8 @@ public class BaseTest {
     @AfterTest(alwaysRun = true)
     public void closeBrowser() {
         if (PropertyProvider.getInstance().getProperty("hold.browser.open").equals("false")) {
-            if(driver != null) {
-                driver.quit();
-            }
+            driver.quit();
+
         }
     }
 }
