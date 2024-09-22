@@ -10,3 +10,5 @@
 
 Файлы тестов лежат в папке "src/test/java/tests",
 файлы конфигурации тестов смотри в "src/test/resources/suites".
+
+Смена ОС и других настроек производится в файле local_env.properties, расположенном в "src/test/resources/".
