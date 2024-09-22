@@ -33,7 +33,5 @@ public class SortByFirstNameTest extends BaseTest {
     public void checkForm() {
         String firstChar = driver.findElement(By.xpath("//tbody")).getText().toLowerCase();
         Assert.assertTrue(firstChar.startsWith("a"), "Not sorted by alphabet");
-
-
     }
 }
