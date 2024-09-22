@@ -4,11 +4,14 @@ import helpers.SelectorCustomersToDelete;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.CustomerPage;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 public class DeleteCustomerTest extends BaseTest {
@@ -33,16 +36,13 @@ public class DeleteCustomerTest extends BaseTest {
         }
     }
 
-//    @Test
-//    @Step("Select an account, select currency and click Process")
-////    public void openAccount() throws InterruptedException {
-//        openAccountPage
-//                .waitUntilOpen()
-//                .chooseUser()
-//                .chooseCurrency()
-//                .clickProcessButton();
-//
-//        Alert alert = driver.switchTo().alert();
-//        alert.accept();
-//    }
+    @Test
+    @Step("Data deletion check")
+    public void checkForm() {
+        try { List<WebElement> deletedElement = driver.findElements(By.xpath("//*[text()='Albus' and text()='Ron']"));
+            Assert.assertTrue(deletedElement.isEmpty(), "Not deleted");
+        } catch (NoSuchElementException e) {
+            new RuntimeException(e);
+        }
+    }
 }
